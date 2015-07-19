@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  estimated_time: 1
+  actual_time: 1
+  completed: false
+
+two:
+  title: MyString
+  estimated_time: 1
+  actual_time: 1
+  completed: false
