@@ -4,8 +4,11 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     namespace :v1  do
-      resources :comments
-      resources :tasks
+      resources :tasks do
+        member do
+          put 'toggle_completed'
+        end
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

@@ -28,7 +28,6 @@ var CommentBox = React.createClass({
       type: 'PATCH',
       data: task,
       success: function(res) {
-        console.log(res);
         this.setState({data:res.data});
       }.bind(this),
       error: function(xhr, status, err) {
@@ -37,16 +36,27 @@ var CommentBox = React.createClass({
     });
   },
   handleTaskDelete: function (task) {
-    console.log(task);
     $.ajax({
       url: this.props.url+"/"+task.id,
       dataType: 'json',
       type: 'DELETE',
-      data: {id: task.id},
       success: function(data) {
         this.setState({data: this.state.data.filter(function (data) {
           return data.id != task.id;
         })});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
+  handleCheckBox: function (task) {
+    $.ajax({
+      url: this.props.url+"/"+task.id+"/toggle_completed",
+      dataType: 'json',
+      type: 'PUT',
+      success: function(res) {
+        this.setState({data:res.data});
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
@@ -104,45 +114,16 @@ var CommentBox = React.createClass({
         <TaskList
           data={this.state.data}
           handleTaskDelete={this.handleTaskDelete}
-          handleTaskSubmit={this.handleTaskSubmit} />
-        <BarCharts
-          working_hours={this.calcWorkingHours()}
-          estimated_working_hours={this.calcEstimatedWorkingHours()}
-          actual_working_hours={this.calcActualWorkingHours()}/>
-        <TaskReportBox data={this.state.data} />
+          handleTaskSubmit={this.handleTaskSubmit}
+          handleCheckBox={this.handleCheckBox} />
+        <div className='row'>
+          <BarCharts
+            working_hours={this.calcWorkingHours()}
+            estimated_working_hours={this.calcEstimatedWorkingHours()}
+            actual_working_hours={this.calcActualWorkingHours()}/>
+          <TaskReportBox data={this.state.data} />
+        </div>
       </div>
-    );
-  }
-});
-
-
-
-
-
-var TaskReportBox = React.createClass({
-  render: function() {
-    var taskNodes = this.props.data.map(function (task) {
-      return (
-        <TaskReport task={task} />
-      );
-    });
-    return (
-      <div>
-        <p>【今日やったこと】</p>
-        <div>
-          {taskNodes}
-        </div><br/>
-        <p>【意識項目】</p>
-        <p>【明日やること】</p>
-      </div>
-    );
-  }
-});
-
-var TaskReport = React.createClass({
-  render: function() {
-    return (
-      <div>- [ ] {this.props.task.title} [{this.props.task.estimated_time}:{this.props.task.actual_time}]</div>
     );
   }
 });

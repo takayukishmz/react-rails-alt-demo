@@ -20,7 +20,13 @@ class Api::V1::TasksController < ApplicationController
     @task.destroy
   end
 
-  
+  def toggle_completed
+    task = Task.find(params[:id])
+    task.toggle(:completed)
+    task.save
+    @data = Task.all
+    render :index
+  end
 
   private
   def task_params
