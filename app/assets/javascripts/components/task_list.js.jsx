@@ -10,7 +10,8 @@ var TaskList = React.createClass({
   render: function() {
     var taskNodes = this.props.data.map(function (task) {
       if (task.id == this.state.editting_id) {
-        return ( <TaskFrom onTaskSubmit={this.props.handleTaskSubmit}
+        return ( <TaskFrom
+          onTaskSubmit={this.props.handleTaskSubmit}
           id={task.id}
           title={task.title}
           estimated_time={task.estimated_time}
@@ -23,7 +24,9 @@ var TaskList = React.createClass({
           title={task.title}
           estimated_time={task.estimated_time}
           actual_time={task.actual_time}
+          completed={task.completed}
           handleDelete={this.props.handleTaskDelete}
+          onToggleCheckBox={this.props.handleCheckBox}
           handleClick={this.setEdittingId} />
         );
       }

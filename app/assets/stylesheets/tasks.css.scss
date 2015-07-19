@@ -2,15 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-  color: #797979;
-  background-color:#f1f2f7;
-}
-.tasklist {
-  header {
-    border-color: #eff2f7;
-  }
-}
 
 .tasklist__cell {
   display : flex;
@@ -20,6 +11,12 @@ body {
   &:hover {
     background-color: #f2f2f2;
   }
+}
+.tasklist__cell--done {
+  background-color: #f2f2f2;
+}
+.task__title--done {
+  text-decoration: line-through;
 }
 .task__checkbox {
   width: 30px;
@@ -32,6 +29,7 @@ body {
 .task__title {
   margin-right: 5px;
 }
+
 
 .task__subinfo {
   display: flex;
