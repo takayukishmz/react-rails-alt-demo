@@ -29,9 +29,13 @@ var TaskList = React.createClass({
       }
     }.bind(this));
     return (
-      <ul className="tasklist">
-        {taskNodes}
-      </ul>
+      <div className='panel tasklist'>
+        <header className='panel-heading'>Todo List</header>
+        <ul className="tasklist panel-body">
+          {taskNodes}
+          <TaskFrom onTaskSubmit={this.props.handleTaskSubmit} />
+        </ul>
+      </div>
     );
   }
 });

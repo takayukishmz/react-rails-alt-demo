@@ -40,4 +40,4 @@ gem 'spring',        group: :development
 
 gem 'react-rails'
 gem 'bootstrap3-rails'
-gem 'bootstrap-material-design'
+# gem 'bootstrap-material-design'

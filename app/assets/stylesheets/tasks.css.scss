@@ -2,32 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
+body {
+  color: #797979;
+  background-color:#f1f2f7;
+}
 .tasklist {
-  margin: 10px;
+  header {
+    border-color: #eff2f7;
+  }
 }
 
 .tasklist__cell {
+  display : flex;
   list-style-type: none;
-}
-
-.tasklist__cell__content {
-  width: 100%;
-  border-bottom: 1px solid #eee;
+  padding: 10px 5px;
+  border-bottom: 1px dashed #eaeaea;
   &:hover {
     background-color: #f2f2f2;
   }
 }
-.tasklist__cell__title {
-  float: left;
-  width: 85%;
-
+.task__checkbox {
+  width: 30px;
+}
+.task__content{
+  width: 100%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.task__title {
+  margin-right: 5px;
 }
 
-.tasklist__cell__estimated,
-.tasklist__cell__actual,
-.tasklist__cell__delete {
-  float: right;
-  width: 5%;
-  // min-width: 50px;
+.task__subinfo {
+  display: flex;
+  margin-right: auto;
+}
+
+.task-form {
+  width: 100%;
+}
+.task-form-group {
+  display: flex;
+}
+
+.task-form-group__input {
+  border: 1px solid #eee;
+  border-radius: 0;
+}
+.task-form-title {
+  flex: 2;
 }

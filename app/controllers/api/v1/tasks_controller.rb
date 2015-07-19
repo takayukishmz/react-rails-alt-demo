@@ -20,6 +20,8 @@ class Api::V1::TasksController < ApplicationController
     @task.destroy
   end
 
+  
+
   private
   def task_params
     params.permit(:id, :title, :estimated_time, :actual_time, :completed)

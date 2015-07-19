@@ -31,36 +31,33 @@ var TaskFrom = React.createClass({
   render: function() {
     return (
       <li className='tasklist__cell'>
-        <form action="#" className="commentForm" onSubmit={this.handleSubmit}>
-          <div>
-            <div className="mdl-textfield mdl-js-textfield">
+        <form action="#" className="task-form" onSubmit={this.handleSubmit}>
+          <div className='task-form-group'>
+            <div className="form-group task-form-title">
               <input
                 type="text"
-                className='mdl-textfield__input'
-                ref='title'
-                id='task-title' />
-              <label className="mdl-textfield__label" for="task-title">New Todo</label>
+                className='form-control task-form-group__input'
+                placeholder='new todo'
+                ref='title'/>
             </div>
 
-            <div className="mdl-textfield mdl-js-textfield">
+            <div className="form-group">
               <input
                 type="text"
-                className='mdl-textfield__input'
-                ref='estimated_time'
-                id="task-estimated-time" />
-              <label className="mdl-textfield__label" for="task-estimated-time">estimated time</label>
+                className='form-control task-form-group__input'
+                placeholder='estimate time'
+                ref='estimated_time' />
             </div>
-            <div className="mdl-textfield mdl-js-textfield">
+            <div className="form-group">
               <input
                 type="text"
-                className='mdl-textfield__input'
-                ref='actual_time'
-                id="task-actual-time" />
-              <label className="mdl-textfield__label" for="task-actual-time">actual time</label>
+                className='form-control task-form-group__input'
+                placeholder='actual time'
+                ref='actual_time' />
             </div>
           </div>
           <div>
-            <input type="submit" value="Post" className="mdl-button mdl-js-button mdl-button--raised" />
+            <input type="submit" value="Post" className="btn btn-info" />
           </div>
         </form>
       </li>
