@@ -17,12 +17,22 @@
  */
 
  body {
+   color: #797979;
    background-color:#f1f2f7;
+   font-family: 'Open Sans', sans-serif;
  }
 
 /*
  * override bootstrap components
 */
+
+/* panel */
 .panel-heading {
   border-color: #eff2f7;
+}
+/* form */
+.form-control {
+  border: 1px solid #e2e2e4;
+  box-shadow: none;
+  color: #c2c2c2;
 }

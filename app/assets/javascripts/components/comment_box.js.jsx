@@ -109,8 +109,8 @@ var CommentBox = React.createClass({
   render: function() {
     return (
       <div className="col-md-12">
+        <h1>WorkLess</h1>
         <TimeSetting setting={this.state.setting} />
-        <h3>Todo</h3>
         <TaskList
           data={this.state.data}
           handleTaskDelete={this.handleTaskDelete}

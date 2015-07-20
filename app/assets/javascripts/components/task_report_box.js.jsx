@@ -17,6 +17,7 @@ var TaskReportBox = React.createClass({
             </div><br/>
             <p>【意識項目】</p>
             <p>【明日やること】</p>
+            <p>#takayukishmz</p>
           </div>
         </div>
       </div>
