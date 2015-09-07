@@ -42,6 +42,11 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'react-rails'
+
+source 'https://rails-assets.org'
+gem 'rails-assets-underscore'
+gem 'rails-assets-alt'
+
 gem 'bootstrap3-rails'
 # gem 'bootstrap-material-design'
 
