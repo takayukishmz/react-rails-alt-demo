@@ -7,14 +7,20 @@ var TaskFrom = React.createClass({
     if (!title || !estimated_time) {
       return;
     }
-    if (this.props.handleEdittingId) {
-      this.props.handleEdittingId("");
-    }
-    this.props.onTaskSubmit({id: this.props.id, title: title, estimated_time: estimated_time, actual_time: actual_time});
+    TodoActions.setEdittingId("");
+
+    this.handleTaskSubmit({id: this.props.id, title: title, estimated_time: estimated_time, actual_time: actual_time});
     React.findDOMNode(this.refs.title).value = "";
     React.findDOMNode(this.refs.estimated_time).value = "";
     React.findDOMNode(this.refs.actual_time).value = "";
     return;
+  },
+  handleTaskSubmit: function(task) {
+    if (task.id) {
+      TodoActions.updateTask(task);
+    } else {
+      TodoActions.addTask(task);
+    }
   },
   componentDidMount: function() {
     if (this.props.title) {

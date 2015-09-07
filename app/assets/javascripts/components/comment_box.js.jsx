@@ -1,68 +1,4 @@
 var CommentBox = React.createClass({
-  handleTaskSubmit: function(task) {
-    console.log(task);
-    if (task.id) {
-      this.updateTask(task);
-    } else {
-      this.addTask(task);
-    }
-  },
-  addTask: function (task) {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: "POST",
-      data: task,
-      success: function(data) {
-        this.setState({data: this.state.data.concat([data])});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
-  updateTask: function (task) {
-    $.ajax({
-      url: this.props.url+"/"+task.id,
-      dataType: 'json',
-      type: 'PATCH',
-      data: task,
-      success: function(res) {
-        this.setState({data:res.data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
-  handleTaskDelete: function (task) {
-    $.ajax({
-      url: this.props.url+"/"+task.id,
-      dataType: 'json',
-      type: 'DELETE',
-      success: function(data) {
-        this.setState({data: this.state.data.filter(function (data) {
-          return data.id != task.id;
-        })});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
-  handleCheckBox: function (task) {
-    $.ajax({
-      url: this.props.url+"/"+task.id+"/toggle_completed",
-      dataType: 'json',
-      type: 'PUT',
-      success: function(res) {
-        this.setState({data:res.data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
-  },
   calcWorkingHours: function () {
     return (this.state.setting.end_time - this.state.setting.start_time - this.state.setting.rest);
   },
@@ -81,30 +17,17 @@ var CommentBox = React.createClass({
     return actual_working_hours;
   },
   getInitialState: function () {
-    return {
-      data: [],
-      setting: {
-        start_time: 10,
-        end_time: 24,
-        rest: 3
-      }
-    };
+    return TodoStore.getState();
   },
-  loadCommentFromServer: function () {
-    $.ajax({
-      url: this.props.url,
-      datetype: 'json',
-      success: function(result) {
-        this.setState({data: result.data});
-      }.bind(this),
-      error: function (xhr, status, error) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+  componentDidMount: function() {
+    TodoStore.listen(this.onchange.bind(this));
+    TodoActions.fetchAll();
   },
-  componentDidMount: function () {
-    this.loadCommentFromServer();
-    // setInterval(this.loadCommentFromServer, this.props.pollInterval);
+  componentWillUnmount: function() {
+    TodoStore.unlisten(this.onchange.bind(this));
+  },
+  onchange: function(state) {
+    this.setState(state);
   },
   render: function() {
     return (
@@ -113,9 +36,7 @@ var CommentBox = React.createClass({
         <TimeSetting setting={this.state.setting} />
         <TaskList
           data={this.state.data}
-          handleTaskDelete={this.handleTaskDelete}
-          handleTaskSubmit={this.handleTaskSubmit}
-          handleCheckBox={this.handleCheckBox} />
+          edittingId={this.state.edittingId} />
         <div className='row'>
           <BarCharts
             working_hours={this.calcWorkingHours()}

@@ -1,13 +1,13 @@
 var Task = React.createClass({
   onClickDelete: function (e) {
     e.preventDefault();
-    this.props.handleDelete(this.props);
+    TodoActions.deleteTask(this.props);
   },
   onClick: function (e) {
-    this.props.handleClick(this.props.id);
+    TodoActions.setEdittingId(this.props.id);
   },
   onClickCheckbox: function (e) {
-    this.props.onToggleCheckBox(this.props);
+    TodoActions.toggleCheckBox(this.props);
   },
 
   render: function() {
