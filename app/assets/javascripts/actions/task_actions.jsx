@@ -1,6 +1,6 @@
 (function () {
   var url = '/api/v1/tasks';
-  class TodoActions {
+  class TaskActions {
     fetchAll() {
       $.ajax({
         url: url,
@@ -76,5 +76,5 @@
       this.dispatch(taskId);
     }
   }
-  this.TodoActions = alt.createActions(TodoActions);
+  this.TaskActions = alt.createActions(TaskActions);
 })();

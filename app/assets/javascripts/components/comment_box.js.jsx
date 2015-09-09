@@ -4,27 +4,27 @@ var CommentBox = React.createClass({
   },
   calcEstimatedWorkingHours: function () {
     var estimated_working_hours = 0;
-    for (var i = 0; i < this.state.data.length; i++) {
-      estimated_working_hours += this.state.data[i].estimated_time;
+    for (var i = 0; i < this.state.tasks.length; i++) {
+      estimated_working_hours += this.state.tasks[i].estimated_time;
     }
     return estimated_working_hours;
   },
   calcActualWorkingHours: function () {
     var actual_working_hours = 0;
-    for (var i = 0; i < this.state.data.length; i++) {
-      actual_working_hours += this.state.data[i].actual_time;
+    for (var i = 0; i < this.state.tasks.length; i++) {
+      actual_working_hours += this.state.tasks[i].actual_time;
     }
     return actual_working_hours;
   },
   getInitialState: function () {
-    return TodoStore.getState();
+    return TaskStore.getState();
   },
   componentDidMount: function() {
-    TodoStore.listen(this.onchange.bind(this));
-    TodoActions.fetchAll();
+    TaskStore.listen(this.onchange.bind(this));
+    TaskActions.fetchAll();
   },
   componentWillUnmount: function() {
-    TodoStore.unlisten(this.onchange.bind(this));
+    TaskStore.unlisten(this.onchange.bind(this));
   },
   onchange: function(state) {
     this.setState(state);
@@ -35,14 +35,14 @@ var CommentBox = React.createClass({
         <h1>WorkLess</h1>
         <TimeSetting setting={this.state.setting} />
         <TaskList
-          data={this.state.data}
+          tasks={this.state.tasks}
           edittingId={this.state.edittingId} />
         <div className='row'>
           <BarCharts
             working_hours={this.calcWorkingHours()}
             estimated_working_hours={this.calcEstimatedWorkingHours()}
             actual_working_hours={this.calcActualWorkingHours()}/>
-          <TaskReportBox data={this.state.data} />
+          <TaskReportBox tasks={this.state.tasks} />
         </div>
       </div>
     );

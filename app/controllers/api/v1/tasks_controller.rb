@@ -1,6 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   def index
-    @data = Task.all
+    @tasks = Task.all
   end
 
   def create
@@ -11,7 +11,7 @@ class Api::V1::TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     task.update(task_params)
-    @data = Task.all
+    @tasks = Task.all
     render :index
   end
 
@@ -24,7 +24,7 @@ class Api::V1::TasksController < ApplicationController
     task = Task.find(params[:id])
     task.toggle(:completed)
     task.save
-    @data = Task.all
+    @tasks = Task.all
     render :index
   end
 

@@ -1,35 +1,35 @@
 (function() {
-  class TodoStore {
+  class TaskStore {
     constructor() {
-        this.data = [];
+        this.tasks = [];
         this.edittingId = null;
         this.setting = {
           start_time: 10,
           end_time: 24,
           rest: 3
         };
-        this.bindActions(TodoActions);
+        this.bindActions(TaskActions);
     }
     fetchAll(tasks) {
-      this.setState({data: tasks});
+      this.setState({tasks: tasks});
     }
     addTask(task) {
-      this.setState({data: this.data.concat([task])});
+      this.setState({tasks: this.tasks.concat([task])});
     }
     updateTask(tasks) {
-      this.setState({data: tasks});
+      this.setState({tasks: tasks});
     }
     deleteTask(task) {
-      this.setState({data: this.data.filter(function (data) {
-        return data.id != task.id;
+      this.setState({tasks: this.tasks.filter(function (tasks) {
+        return tasks.id != task.id;
       })});
     }
     toggleCheckBox(tasks) {
-      this.setState({data: tasks});
+      this.setState({tasks: tasks});
     }
     setEdittingId(taskId) {
       this.setState({edittingId: taskId});
     }
   }
-  this.TodoStore = alt.createStore(TodoStore, 'TodoStore');
+  this.TaskStore = alt.createStore(TaskStore, 'TaskStore');
 })();

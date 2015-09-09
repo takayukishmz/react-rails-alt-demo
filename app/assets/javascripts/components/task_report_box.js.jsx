@@ -1,7 +1,7 @@
 
 var TaskReportBox = React.createClass({
   render: function() {
-    var taskNodes = this.props.data.map(function (task) {
+    var taskNodes = this.props.tasks.map(function (task) {
       return (
         <TaskReport task={task} />
       );

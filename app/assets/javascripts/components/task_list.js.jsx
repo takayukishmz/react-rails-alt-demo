@@ -1,9 +1,9 @@
 var TaskList = React.createClass({
   setEdittingId: function (id) {
-    TodoStore.setEdittingId(id);
+    TaskStore.setEdittingId(id);
   },
   render: function() {
-    var taskNodes = this.props.data.map(function (task) {
+    var taskNodes = this.props.tasks.map(function (task) {
       if (task.id == this.props.edittingId) {
         return ( <TaskFrom
           id={task.id}
