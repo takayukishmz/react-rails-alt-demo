@@ -11,6 +11,12 @@ Things you may want to cover:
 
 * Configuration
 
+1. Clone this repository
+2. run ` bundle install `
+3. run ` rake db:setup `
+4. run ` rails s`
+5. run ` open http://localhost:3000`
+
 * Database creation
 
 * Database initialization
