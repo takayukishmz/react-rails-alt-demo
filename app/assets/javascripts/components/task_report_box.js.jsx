@@ -9,15 +9,8 @@ var TaskReportBox = React.createClass({
     return (
       <div className='col-sm-6'>
         <div className='panel'>
-          <header className='panel-heading'>レポート</header>
+          <header className='panel-heading'>Report</header>
           <div className='panel-body'>
-            <p>【今日やったこと】</p>
-            <div>
-              {taskNodes}
-            </div><br/>
-            <p>【意識項目】</p>
-            <p>【明日やること】</p>
-            <p>#takayukishmz</p>
           </div>
         </div>
       </div>
