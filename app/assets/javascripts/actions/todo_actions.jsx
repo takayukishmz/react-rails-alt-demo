@@ -21,7 +21,6 @@
         type: "POST",
         data: task,
         success: function(task) {
-          console.log('action add task');
           this.dispatch(task);
         }.bind(this),
         error: function(xhr, status, err) {
